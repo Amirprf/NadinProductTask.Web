@@ -21,7 +21,7 @@ namespace NadinProductTask.Web.Controllers
 		/// لیست محصولات
 		/// </summary>
 		[HttpGet]
-		public async Task<IActionResult> GetAll()
+		public async Task<IActionResult> GetAllProducts()
 		{
 			var products = await _productService.GetAllProducts();
 
@@ -32,7 +32,7 @@ namespace NadinProductTask.Web.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> AddProduct(AddProductCommand command)
+		public async Task<IActionResult> AddProductAsync(AddProductCommand command)
 		{
 
 			await _productService.AddProductAsync(command);

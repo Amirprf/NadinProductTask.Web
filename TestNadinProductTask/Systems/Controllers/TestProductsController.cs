@@ -32,7 +32,7 @@ namespace TestNadinProductTask.Systems.Controllers
 
 			var sut = new ProductsController(mockProductsService.Object);
 			//Act
-			var result = (OkObjectResult)await sut.GetAll();
+			var result = (OkObjectResult)await sut.GetAllProducts();
 
 			//Assert
 			result.StatusCode.Should().Be(200);
@@ -51,7 +51,7 @@ namespace TestNadinProductTask.Systems.Controllers
 			var sut = new ProductsController(mockProductsService.Object);
 
 			//Act
-			var result = await sut.GetAll();
+			var result = await sut.GetAllProducts();
 
 			//Assert
 			mockProductsService.Verify(service => service.GetAllProducts(), Times.Once());
@@ -70,7 +70,7 @@ namespace TestNadinProductTask.Systems.Controllers
 			var sut = new ProductsController(mockProductsService.Object);
 
 			//Act
-			var result = await sut.GetAll();
+			var result = await sut.GetAllProducts();
 
 			//Assert
 			result.Should().BeOfType<OkObjectResult>();
@@ -91,7 +91,7 @@ namespace TestNadinProductTask.Systems.Controllers
 			var sut = new ProductsController(mockProductsService.Object);
 
 			//Act
-			var result = await sut.GetAll();
+			var result = await sut.GetAllProducts();
 
 			//Assert
 			result.Should().BeOfType<NotFoundResult>();
@@ -119,7 +119,7 @@ namespace TestNadinProductTask.Systems.Controllers
 
 			var sut = new ProductsController(mockProductsService.Object);
 			 
-			var result = (OkObjectResult)await sut.AddProduct(productCommand);
+			var result = (OkObjectResult)await sut.AddProductAsync(productCommand);
 			//Assert
 			result.StatusCode.Should().Be(200);
 		}
