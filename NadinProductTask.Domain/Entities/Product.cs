@@ -12,10 +12,20 @@ namespace NadinProductTask.Domain.Entities
 	[Index(nameof(Product.ManufactureEmail), IsUnique = true)]
 	public class Product
 	{
-
-		public Product()
+		public Product(string name, DateTime produceDate,
+			string manufacturePhone, string manufactureEmail,
+			bool isAvailable, bool isDelete, string athorUserName)
 		{
+			Id = Guid.NewGuid();
+			Name = name;
+			ProduceDate = produceDate;
+			ManufacturePhone = manufacturePhone;
+			ManufactureEmail = manufactureEmail;
+			IsAvailable = isAvailable;
+			IsDelete = isDelete;
+			AthorUserName = athorUserName;
 		}
+		
 
 		[Key]
 		public Guid Id { get; private set; }
@@ -60,18 +70,9 @@ namespace NadinProductTask.Domain.Entities
 		[MaxLength(450)]
 		public string AthorUserName { get; private set; }
 
-        public Product(string name,DateTime produceDate,
-			string manufacturePhone, string manufactureEmail,
-			bool isAvailable, bool isDelete, string athorUserName)
+		public Product()
 		{
-			Id = Guid.NewGuid();
-			Name = name;
-			ProduceDate=produceDate;
-			ManufacturePhone=manufacturePhone;
-			ManufactureEmail=manufactureEmail;
-			IsAvailable=isAvailable;
-			IsDelete = isDelete;
-			AthorUserName=athorUserName;
-        }
-    }
+		}
+
+	}
 }

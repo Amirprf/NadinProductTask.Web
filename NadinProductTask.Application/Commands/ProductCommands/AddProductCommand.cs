@@ -1,4 +1,5 @@
 ﻿using NadinProductTask.Application.Commands.Base;
+using NadinProductTask.Application.Validators.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace NadinProductTask.Application.Commands.ProductCommands
 		/// <returns>bool</returns>
 		public override bool Validate()
 		{
-			return true;
+			return new AddProductCommandValidator().Validate(this).IsValid;
 		}
 
 		/// <summary>
@@ -38,7 +39,7 @@ namespace NadinProductTask.Application.Commands.ProductCommands
 		/// </summary>
 		public dynamic ExecuteError()
 		{
-			return true;
+			return new AddProductCommandValidator().Validate(this).Errors;
 		}
 	}
 }

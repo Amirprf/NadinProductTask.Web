@@ -28,7 +28,7 @@ namespace NadinProductTask.Web.Controllers
 			if (!products.Any())
 				return NotFound();
 
-			return Ok(products);
+			return OkResult(ApiMessage.Success,products);
 		}
 
 		[HttpPost]
