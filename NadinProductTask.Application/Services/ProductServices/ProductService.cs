@@ -6,7 +6,9 @@ using NadinProductTask.Domain.Entities;
 using NadinProductTask.Persist.Repository.ProductRepository;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,8 +28,22 @@ namespace NadinProductTask.Application.Services.ProductServices
         public async Task AddProductAsync(AddProductCommand command)
 		{
 			var product = _mapper.Map<Product>(command);
-			
-			await _productRepository.AddAsync(product);
+
+			bool isExistEmail = IsUniqueEmail(product.ManufactureEmail).Result;
+			bool isExistDate = IsUniqueProduceDate(product.ProduceDate).Result;
+
+			if(isExistEmail || isExistDate)
+			{
+				throw new InvalidOperationException();
+			}
+			try
+			{
+				await _productRepository.AddAsync(product);
+			}
+			catch (Exception)
+			{
+				return;
+			}
 		}
 
 		public async Task<List<ProductDto>> GetAllProducts()
@@ -38,10 +54,27 @@ namespace NadinProductTask.Application.Services.ProductServices
 			return _mapper.Map<List<ProductDto>>(products);
 		}
 
+
 		public async Task UpdateProductById(EditProductCommand command)
 		{
 			var editProduct = _mapper.Map<Product>(command);
 			await _productRepository.UpdateAsync(editProduct);
 		}
+
+		public async Task<bool> IsUniqueEmail(string email)
+		{
+			var isExsitsEmail = await _productRepository.ManufactureEmailExistsAsync(email);
+
+			return isExsitsEmail;
+		}
+
+		public async Task<bool> IsUniqueProduceDate(DateTime time)
+		{
+			var isExsitsDate = await _productRepository.ProduceDateExistsAsync(time);
+
+			return isExsitsDate;
+		}
+
+
 	}
 }

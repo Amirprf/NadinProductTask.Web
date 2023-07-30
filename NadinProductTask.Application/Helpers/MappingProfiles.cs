@@ -14,7 +14,14 @@ namespace NadinProductTask.Application.Helpers
 	{
 		public MappingProfiles()
 		{
-			CreateMap<AddProductCommand, Product>();
+			CreateMap<AddProductCommand, Product>()
+				.ForMember
+				(dest=>
+					dest.ManufactureEmail, opt => 
+					opt.MapFrom(src=>
+					src.ManufactureEmail.ToLower()
+				));
+			
 			CreateMap<Product,ProductDto>();
 		}
 	}

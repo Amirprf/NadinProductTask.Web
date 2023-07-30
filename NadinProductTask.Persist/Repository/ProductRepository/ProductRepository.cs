@@ -20,8 +20,8 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 		}
 		public async Task AddAsync(Product product)
 		{
-			await _context.Products.AddAsync(product);
-			await _context.SaveChangesAsync();
+				await _context.Products.AddAsync(product);
+				await _context.SaveChangesAsync();
 		}
 
 		public async Task<List<Product>> GetAllAsync()
@@ -61,6 +61,21 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 			return await _context.Products.FindAsync(id); // if there is none => null
 		}
 
+
+
+		#region Validations
+
+		public async Task<bool> ManufactureEmailExistsAsync(string email)
+		{
+			return await _context.Products.AnyAsync(p => p.ManufactureEmail == email);
+		}
+
+		public async Task<bool> ProduceDateExistsAsync(DateTime dateTime)
+		{
+			return await _context.Products.AnyAsync(p => p.ProduceDate == dateTime);
+		}
+
+		#endregion
 
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using NadinProductTask.Application.Commands.Base;
 using NadinProductTask.Application.Validators.Product;
+using NadinProductTask.Persist.Repository.ProductRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

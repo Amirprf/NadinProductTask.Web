@@ -13,5 +13,7 @@ namespace NadinProductTask.Application.Services.ProductServices
 		Task<List<ProductDto>> GetAllProducts();
 		Task AddProductAsync(AddProductCommand command);
 		Task UpdateProductById(EditProductCommand command);
+		Task<bool> IsUniqueEmail(string email);
+		Task<bool> IsUniqueProduceDate(DateTime time);
 	}
 }

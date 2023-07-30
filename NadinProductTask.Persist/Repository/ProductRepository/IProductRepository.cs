@@ -13,6 +13,8 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 		Task<List<Product>> GetAllAsync();
 		Task UpdateAsync(Product product);
 		Task<Product> FindAsync(Guid id);
-		
+
+		Task<bool> ManufactureEmailExistsAsync(string email);
+		Task<bool> ProduceDateExistsAsync(DateTime dateTime);
 	}
 }

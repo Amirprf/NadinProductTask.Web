@@ -54,7 +54,15 @@ namespace NadinProductTask.Web.Controllers
 	{
 		public const string IdIsNotValid = "شناسه کاربری وارد شده معتبر نمیباشد";
 
-		public const string Success = "Success";
+
+		#region Product
+
+		public const string EmailOrProduceDateExists = "ایمیل یا تاریخ معرفی تکراری میباشند";
+
+        #endregion
+
+
+        public const string Success = "Success";
 		public const string Error = "Error";
 	}
 }

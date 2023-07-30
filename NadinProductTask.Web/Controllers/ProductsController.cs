@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NadinProductTask.Application.Commands.ProductCommands;
 using NadinProductTask.Application.Services.ProductServices;
+using NadinProductTask.Application.Validators.Product;
 using System.Security.Claims;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -38,13 +39,22 @@ namespace NadinProductTask.Web.Controllers
 		{
 			// TODO: Getting Users userName From Claims and fill our command
 
+
 			var error = command.ExecuteError();
 
 			if (!command.Validate())
 			{
 				return BadRequest(error);
 			}
-			await _productService.AddProductAsync(command);
+			try
+			{
+				await _productService.AddProductAsync(command);
+			}
+			catch (InvalidOperationException)
+			{
+				return Conflict(ApiMessage.EmailOrProduceDateExists);
+			}
+			
 
 			return OkResult(ApiMessage.Success);
 		}
