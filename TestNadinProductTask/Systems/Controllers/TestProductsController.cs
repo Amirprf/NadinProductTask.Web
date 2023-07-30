@@ -72,5 +72,26 @@ namespace TestNadinProductTask.Systems.Controllers
 			var ObjectResult = (OkObjectResult)result;
 			ObjectResult.Value.Should().BeOfType<List<ProductDto>>();
 		}
+
+		[Fact]
+		public async Task GetAll_OnNotProductsFound_Returns404()
+		{
+			//Arrange
+			var mockProductsService = new Mock<IProductService>();
+
+			mockProductsService
+				.Setup(service => service.GetAllProducts())
+				.ReturnsAsync(new List<ProductDto>());
+
+			var sut = new ProductsController(mockProductsService.Object);
+
+			//Act
+			var result = await sut.GetAll();
+
+			//Assert
+			result.Should().BeOfType<NotFoundResult>();
+			var ObjectResult = (NotFoundResult)result;
+			ObjectResult.StatusCode.Should().Be(404);
+		}
 	}
 }
