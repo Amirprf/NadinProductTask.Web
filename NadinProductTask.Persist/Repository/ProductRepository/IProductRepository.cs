@@ -11,5 +11,8 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 	{
 		Task AddAsync(Product product);
 		Task<List<Product>> GetAllAsync();
+		Task UpdateAsync(Product product);
+		Task<Product> FindAsync(Guid id);
+		
 	}
 }

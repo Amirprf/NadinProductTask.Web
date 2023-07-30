@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using NadinProductTask.Application.Commands.ProductCommands;
 using NadinProductTask.Application.Dtos;
 using NadinProductTask.Domain.Entities;
@@ -35,6 +36,12 @@ namespace NadinProductTask.Application.Services.ProductServices
 			 var products= await _productRepository.GetAllAsync();
 
 			return _mapper.Map<List<ProductDto>>(products);
+		}
+
+		public async Task UpdateProductById(EditProductCommand command)
+		{
+			var editProduct = _mapper.Map<Product>(command);
+			await _productRepository.UpdateAsync(editProduct);
 		}
 	}
 }

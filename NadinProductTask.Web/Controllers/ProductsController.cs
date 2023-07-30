@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NadinProductTask.Application.Commands.ProductCommands;
 using NadinProductTask.Application.Services.ProductServices;
+using System.Security.Claims;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NadinProductTask.Web.Controllers
@@ -33,7 +34,7 @@ namespace NadinProductTask.Web.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> AddProductAsync(AddProductCommand command)
+		public async Task<IActionResult> AddProductAsync([FromBody] AddProductCommand command)
 		{
 			// TODO: Getting Users userName From Claims and fill our command
 
@@ -44,6 +45,23 @@ namespace NadinProductTask.Web.Controllers
 				return BadRequest(error);
 			}
 			await _productService.AddProductAsync(command);
+
+			return OkResult(ApiMessage.Success);
+		}
+
+		[HttpPut]
+		public async Task<IActionResult> EditProductAsync([FromBody] EditProductCommand command)
+		{
+			var error = command.ExecuteError();
+
+			// TODO: Getting Users userName From Claims and fill our command
+		
+
+			if (!command.Validate())
+			{
+				return BadRequest(error);
+			}
+			await _productService.UpdateProductById(command);
 
 			return OkResult(ApiMessage.Success);
 		}

@@ -35,5 +35,32 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 				return null;
 			}
 		}
+
+		public async Task UpdateAsync(Product editProduct)
+		{
+			Product product = FindAsync(editProduct.Id).Result;
+			
+			if (product.AthorUserName != editProduct.AthorUserName)
+			{
+				throw new AccessViolationException("شما اجازه ویرایش این محصول را ندارید", null);
+			}
+			if (_context.Products.Any(p => p.ManufactureEmail == editProduct.ManufactureEmail || p.ProduceDate == editProduct.ProduceDate))
+			{
+				throw new Exception("محصول تکراری میباشد",null);
+			}
+
+			_context.Update(product);
+			await _context.SaveChangesAsync();
+		}
+
+
+
+
+		public async Task<Product> FindAsync(Guid id)
+		{
+			return await _context.Products.FindAsync(id); // if there is none => null
+		}
+
+
 	}
 }
