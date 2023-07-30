@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NadinProductTask.Domain\NadinProductTask.Domain.csproj" />
+    <ProjectReference Include="..\NadinProductTask.Persist\NadinProductTask.Persist.csproj" />
   </ItemGroup>
 
 </Project>
