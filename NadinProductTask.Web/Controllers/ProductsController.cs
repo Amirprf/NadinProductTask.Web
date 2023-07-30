@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NadinProductTask.Application.Commands.ProductCommands;
 using NadinProductTask.Application.Services.ProductServices;
 
 namespace NadinProductTask.Web.Controllers
@@ -28,6 +29,15 @@ namespace NadinProductTask.Web.Controllers
 				return NotFound();
 
 			return Ok(products);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> AddProduct(AddProductCommand command)
+		{
+
+			await _productService.AddProductAsync(command);
+
+			return OkResult(ApiMessage.Success);
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using NadinProductTask.Application.Dtos;
+﻿using NadinProductTask.Application.Commands.ProductCommands;
+using NadinProductTask.Application.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace NadinProductTask.Application.Services.ProductServices
 	public interface IProductService
 	{
 		Task<List<ProductDto>> GetAllProducts();
+		Task AddProductAsync(AddProductCommand command);
 	}
 }

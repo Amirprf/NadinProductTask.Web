@@ -48,4 +48,14 @@ namespace NadinProductTask.Web.Controllers
 			public object Content { get; set; }
 		}
 	}
+
+
+	public static class ApiMessage
+	{
+		public const string IdIsNotValid = "شناسه کاربری وارد شده معتبر نمیباشد";
+
+		public const string Success = "Success";
+		public const string Error = "Error";
+	}
 }
+
