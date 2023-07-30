@@ -10,6 +10,7 @@ namespace NadinProductTask.Application.Services.ProductServices
 {
 	public class ProductService : IProductService
 	{
+		
 		public async Task AddProductAsync(AddProductCommand command)
 		{
 			return;
