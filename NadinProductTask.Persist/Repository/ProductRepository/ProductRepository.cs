@@ -19,7 +19,8 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 		}
 		public async Task AddAsync(Product product)
 		{
-			throw new NotImplementedException();
+			await _context.Products.AddAsync(product);
+			await _context.SaveChangesAsync();
 		}
 	}
 }
