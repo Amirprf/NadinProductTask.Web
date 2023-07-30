@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using NadinProductTask.Application.Dtos;
 using NadinProductTask.Application.Services.ProductServices;
 using NadinProductTask.Web.Controllers;
 using System;
@@ -30,6 +31,25 @@ namespace TestNadinProductTask.Systems.Controllers
 
 			//Assert
 			result.StatusCode.Should().Be(200);
+		}
+
+		[Fact]
+		public async Task GetAll_OnSuccess_InvokesUserServiceExactlyOnce()
+		{
+			//Arrange
+			var mockProductsService = new Mock<IProductService>();
+
+			mockProductsService
+				.Setup(service => service.GetAllProducts())
+				.ReturnsAsync(new List<ProductDto>());
+
+			var sut = new ProductsController(mockProductsService.Object);
+
+			//Act
+			var result = await sut.GetAll();
+
+			//Assert
+			mockProductsService.Verify(service => service.GetAllProducts(), Times.Once());
 		}
 	}
 }
