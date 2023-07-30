@@ -51,5 +51,26 @@ namespace TestNadinProductTask.Systems.Controllers
 			//Assert
 			mockProductsService.Verify(service => service.GetAllProducts(), Times.Once());
 		}
+
+		[Fact]
+		public async Task GetAll_OnSuccess_ReturnsListOfProducts()
+		{
+			//Arrange
+			var mockProductsService = new Mock<IProductService>();
+
+			mockProductsService
+				.Setup(service => service.GetAllProducts())
+				.ReturnsAsync(ProductsFixture.GetTestProducts());
+
+			var sut = new ProductsController(mockProductsService.Object);
+
+			//Act
+			var result = await sut.GetAll();
+
+			//Assert
+			result.Should().BeOfType<OkObjectResult>();
+			var ObjectResult = (OkObjectResult)result;
+			ObjectResult.Value.Should().BeOfType<List<ProductDto>>();
+		}
 	}
 }
