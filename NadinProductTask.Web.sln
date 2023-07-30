@@ -5,6 +5,16 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NadinProductTask.Web", "NadinProductTask.Web\NadinProductTask.Web.csproj", "{4454E169-A685-4A78-94ED-0AF9E5319ED2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NadinProductTask.Application", "NadinProductTask.Application\NadinProductTask.Application.csproj", "{0455F56B-0D36-46CF-B82C-08FD0C28D187}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NadinProductTask.Domain", "NadinProductTask.Domain\NadinProductTask.Domain.csproj", "{EFCED20B-C00C-44F4-AA80-2EA745031579}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NadinProductTask.Infrastructure", "NadinProductTask.Infrastructure\NadinProductTask.Infrastructure.csproj", "{4B9921F2-401E-4866-A867-52F7D99E8298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NadinProductTask.Persist", "NadinProductTask.Persist\NadinProductTask.Persist.csproj", "{E4554CC2-063E-4B04-B46C-957A45EE0CB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNadinProductTask", "TestNadinProductTask\TestNadinProductTask.csproj", "{573956DB-2073-4689-B071-64122DB8D0AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +25,26 @@ Global
 		{4454E169-A685-4A78-94ED-0AF9E5319ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4454E169-A685-4A78-94ED-0AF9E5319ED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4454E169-A685-4A78-94ED-0AF9E5319ED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0455F56B-0D36-46CF-B82C-08FD0C28D187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0455F56B-0D36-46CF-B82C-08FD0C28D187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0455F56B-0D36-46CF-B82C-08FD0C28D187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0455F56B-0D36-46CF-B82C-08FD0C28D187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFCED20B-C00C-44F4-AA80-2EA745031579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFCED20B-C00C-44F4-AA80-2EA745031579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFCED20B-C00C-44F4-AA80-2EA745031579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCED20B-C00C-44F4-AA80-2EA745031579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B9921F2-401E-4866-A867-52F7D99E8298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B9921F2-401E-4866-A867-52F7D99E8298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B9921F2-401E-4866-A867-52F7D99E8298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B9921F2-401E-4866-A867-52F7D99E8298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4554CC2-063E-4B04-B46C-957A45EE0CB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4554CC2-063E-4B04-B46C-957A45EE0CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4554CC2-063E-4B04-B46C-957A45EE0CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4554CC2-063E-4B04-B46C-957A45EE0CB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{573956DB-2073-4689-B071-64122DB8D0AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{573956DB-2073-4689-B071-64122DB8D0AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{573956DB-2073-4689-B071-64122DB8D0AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{573956DB-2073-4689-B071-64122DB8D0AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
