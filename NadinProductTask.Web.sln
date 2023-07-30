@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NadinProductTask.Web", "NadinProductTask.Web\NadinProductTask.Web.csproj", "{4454E169-A685-4A78-94ED-0AF9E5319ED2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4454E169-A685-4A78-94ED-0AF9E5319ED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4454E169-A685-4A78-94ED-0AF9E5319ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4454E169-A685-4A78-94ED-0AF9E5319ED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4454E169-A685-4A78-94ED-0AF9E5319ED2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {546D6E6D-9127-400C-B5B7-94760009B727}
+	EndGlobalSection
+EndGlobal
