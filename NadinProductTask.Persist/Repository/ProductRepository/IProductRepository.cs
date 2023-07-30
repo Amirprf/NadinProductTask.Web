@@ -10,5 +10,6 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 	public interface IProductRepository
 	{
 		Task AddAsync(Product product);
+		Task<List<Product>> GetAllAsync();
 	}
 }

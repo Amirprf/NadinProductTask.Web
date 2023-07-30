@@ -31,7 +31,10 @@ namespace NadinProductTask.Application.Services.ProductServices
 
 		public async Task<List<ProductDto>> GetAllProducts()
 		{
-			throw new NotImplementedException();
+
+			 var products= await _productRepository.GetAllAsync();
+
+			return _mapper.Map<List<ProductDto>>(products);
 		}
 	}
 }

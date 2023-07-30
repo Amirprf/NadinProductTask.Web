@@ -1,4 +1,5 @@
-﻿using NadinProductTask.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using NadinProductTask.Domain.Entities;
 using NadinProductTask.Persist.Persist;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,18 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 		{
 			await _context.Products.AddAsync(product);
 			await _context.SaveChangesAsync();
+		}
+
+		public async Task<List<Product>> GetAllAsync()
+		{
+			try
+			{
+				return await _context.Products.ToListAsync();
+			}
+			catch (Exception)
+			{
+				return null;
+			}
 		}
 	}
 }

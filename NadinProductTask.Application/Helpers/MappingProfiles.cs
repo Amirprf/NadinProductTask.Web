@@ -15,7 +15,7 @@ namespace NadinProductTask.Application.Helpers
 		public MappingProfiles()
 		{
 			CreateMap<AddProductCommand, Product>();
-
+			CreateMap<Product,ProductDto>();
 		}
 	}
 }
