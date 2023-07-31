@@ -70,8 +70,8 @@ namespace NadinProductTask.Web.Controllers
 		{
 			var error = command.ExecuteError();
 
-			// TODO: Getting Users userName From Claims and fill our command
-		
+			var authorUsername = User.FindFirstValue(ClaimTypes.Name);
+			command.AthorUserName = authorUsername;
 
 			if (!command.Validate())
 			{
