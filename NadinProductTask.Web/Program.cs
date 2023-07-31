@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using NadinProductTask.Application.Helpers;
 using NadinProductTask.Application.Services.ProductServices;
 using NadinProductTask.Persist.Persist;
@@ -65,8 +66,38 @@ namespace NadinProductTask.Web
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 
-			//TODO: Swagger schema
-			builder.Services.AddSwaggerGen();
+			//Swagger
+			builder.Services.AddSwaggerGen(opt =>
+			{
+				//Enabling Token header input in swagger
+				opt.SwaggerDoc("v1", new OpenApiInfo { Title = "NadinApi", Version = "v1" });
+
+				opt.SchemaFilter<NadinSwaggerSchemaFilter>();
+
+				opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+				{
+					In = ParameterLocation.Header,
+					Description = "Please enter token",
+					Name = "Authorization",
+					Type = SecuritySchemeType.Http,
+					BearerFormat = "JWT",
+					Scheme = "bearer"
+				});
+				opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+				{
+					{
+						new OpenApiSecurityScheme
+						{
+							Reference = new OpenApiReference
+							{
+								Type=ReferenceType.SecurityScheme,
+								Id="Bearer"
+							}
+						},new string[]{}
+					}
+				});
+			});;
+
 
 			var app = builder.Build();
 
