@@ -21,7 +21,14 @@ namespace NadinProductTask.Application.Helpers
 					opt.MapFrom(src=>
 					src.ManufactureEmail.ToLower()
 				));
-			
+
+			CreateMap<EditProductCommand, Product>().ForMember
+				(dest =>
+					dest.ManufactureEmail, opt =>
+					opt.MapFrom(src =>
+					src.ManufactureEmail.ToLower()
+				));
+
 			CreateMap<Product,ProductDto>();
 		}
 	}

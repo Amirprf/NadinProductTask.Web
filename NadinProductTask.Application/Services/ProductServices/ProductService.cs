@@ -51,15 +51,44 @@ namespace NadinProductTask.Application.Services.ProductServices
 
 			 var products= await _productRepository.GetAllAsync();
 
-			return _mapper.Map<List<ProductDto>>(products);
+			List<ProductDto> productsDto= _mapper.Map<List<ProductDto>>(products);
+
+			return productsDto;
 		}
 
 
 		public async Task UpdateProductById(EditProductCommand command)
 		{
 			var editProduct = _mapper.Map<Product>(command);
-			await _productRepository.UpdateAsync(editProduct);
+
+			Product product = _productRepository.FindAsync(editProduct.Id).Result;
+
+			bool isExistEmail = IsUniqueEmail(editProduct.ManufactureEmail).Result;
+			bool isExistDate = IsUniqueProduceDate(editProduct.ProduceDate).Result;
+
+			if (product.AthorUserName != editProduct.AthorUserName)
+			{
+				throw new AccessViolationException();
+			}
+			if (isExistEmail || isExistDate)
+			{
+				throw new InvalidOperationException();
+			}
+			try
+			{
+				await _productRepository.UpdateAsync(editProduct);
+			}
+			catch (Exception)
+			{
+
+				return;
+			}
 		}
+
+
+
+
+
 
 		public async Task<bool> IsUniqueEmail(string email)
 		{

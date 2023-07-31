@@ -62,6 +62,7 @@ namespace NadinProductTask.Web.Controllers
         #endregion
 
 
+        public const string YouDontHaveAccess = "شما دسترسی های لازم برای انجام این کار را ندارید";
         public const string Success = "Success";
 		public const string Error = "Error";
 	}

@@ -34,6 +34,9 @@ namespace NadinProductTask.Web.Controllers
 			return OkResult(ApiMessage.Success,products);
 		}
 
+		/// <summary>
+		/// افزودن محصول
+		/// </summary>
 		[HttpPost]
 		public async Task<IActionResult> AddProductAsync([FromBody] AddProductCommand command)
 		{
@@ -59,6 +62,9 @@ namespace NadinProductTask.Web.Controllers
 			return OkResult(ApiMessage.Success);
 		}
 
+		/// <summary>
+		/// ویرایش محصول
+		/// </summary>
 		[HttpPut]
 		public async Task<IActionResult> EditProductAsync([FromBody] EditProductCommand command)
 		{
@@ -71,7 +77,20 @@ namespace NadinProductTask.Web.Controllers
 			{
 				return BadRequest(error);
 			}
-			await _productService.UpdateProductById(command);
+
+			try
+			{
+				await _productService.UpdateProductById(command);
+			}
+			catch (AccessViolationException)
+			{
+				return Forbid(ApiMessage.YouDontHaveAccess);
+			}
+			catch(InvalidOperationException)
+			{
+				return Conflict(ApiMessage.EmailOrProduceDateExists);
+			}
+			
 
 			return OkResult(ApiMessage.Success);
 		}

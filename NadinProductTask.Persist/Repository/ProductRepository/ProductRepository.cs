@@ -38,18 +38,7 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 
 		public async Task UpdateAsync(Product editProduct)
 		{
-			Product product = FindAsync(editProduct.Id).Result;
-			
-			if (product.AthorUserName != editProduct.AthorUserName)
-			{
-				throw new AccessViolationException("شما اجازه ویرایش این محصول را ندارید", null);
-			}
-			if (_context.Products.Any(p => p.ManufactureEmail == editProduct.ManufactureEmail || p.ProduceDate == editProduct.ProduceDate))
-			{
-				throw new Exception("محصول تکراری میباشد",null);
-			}
-
-			_context.Update(product);
+			_context.Update(editProduct);
 			await _context.SaveChangesAsync();
 		}
 

@@ -8,7 +8,7 @@ namespace NadinProductTask.Application.Dtos
 {
 	public class ProductDto
 	{
-		public int Id { get; set; }
+		public Guid Id { get; set; }
 		/// <summary>
 		/// نام محصول
 		/// </summary>
