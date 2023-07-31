@@ -58,11 +58,12 @@ namespace NadinProductTask.Web.Controllers
 		#region Product
 
 		public const string EmailOrProduceDateExists = "ایمیل یا تاریخ معرفی تکراری میباشند";
+		public const string OKProductDeleted = "محصول با موفقیت حذف شد";
 
-        #endregion
+		#endregion
 
 
-        public const string YouDontHaveAccess = "شما دسترسی های لازم برای انجام این کار را ندارید";
+		public const string YouDontHaveAccess = "شما دسترسی های لازم برای انجام این کار را ندارید";
         public const string Success = "Success";
 		public const string Error = "Error";
 	}

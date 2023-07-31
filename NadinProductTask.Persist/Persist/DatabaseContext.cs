@@ -20,5 +20,12 @@ namespace NadinProductTask.Persist.Persist
 
 		#endregion
 
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
+			base.OnModelCreating(builder);
+
+			builder.Entity<Product>()
+				.HasQueryFilter(u => !u.IsDelete);
+		}
 	}
 }

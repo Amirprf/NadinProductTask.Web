@@ -74,5 +74,9 @@ namespace NadinProductTask.Domain.Entities
 		{
 		}
 
+		public void DeleteProduct()
+		{
+			this.IsDelete = true;
+		}
 	}
 }

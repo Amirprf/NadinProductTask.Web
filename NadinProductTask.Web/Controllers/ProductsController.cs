@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NadinProductTask.Application.Commands.ProductCommands;
 using NadinProductTask.Application.Services.ProductServices;
@@ -93,6 +94,31 @@ namespace NadinProductTask.Web.Controllers
 			
 
 			return OkResult(ApiMessage.Success);
+		}
+
+		[HttpDelete]
+		public async Task<IActionResult> DeleteProduct([FromBody] DeleteProductCommand command)
+		{
+			var error = command.ExecuteError();
+
+			//TODO : authorUserName => command
+			
+
+			if (!command.Validate())
+			{
+				return BadRequest(error);
+			}
+			var res = await _productService.DeleteProduct(command);
+
+			if(res == 2)
+			{
+				return Forbid(ApiMessage.YouDontHaveAccess);
+			}
+			if (res == 0)
+			{
+				return NotFound();
+			}
+			return OkResult(ApiMessage.OKProductDeleted);
 		}
 	}
 }

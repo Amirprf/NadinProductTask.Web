@@ -85,7 +85,22 @@ namespace NadinProductTask.Application.Services.ProductServices
 			}
 		}
 
+		public async Task<int> DeleteProduct(DeleteProductCommand command)
+		{
+			var product =_productRepository.FindAsync(command.Id).Result;
 
+			if (product != null)
+			{
+				if (product.AthorUserName != command.AthorUserName)
+				{
+					return 2;
+				}
+				await _productRepository.DeleteAsync(product);
+
+				return 1;
+			}
+			return 0;
+		}
 
 
 
@@ -104,6 +119,6 @@ namespace NadinProductTask.Application.Services.ProductServices
 			return isExsitsDate;
 		}
 
-
+		
 	}
 }

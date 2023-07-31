@@ -14,7 +14,7 @@ namespace TestNadinProductTask.Fixtures
 				new ProductDto
 				{
 					AthorUserName = "User1",
-					Id = 1,
+					Id = Guid.NewGuid(),
 					IsAvailable = true,
 					IsDelete = false,
 					ManufactureEmail="Users1@Mail.com",
@@ -25,7 +25,7 @@ namespace TestNadinProductTask.Fixtures
 				new ProductDto
 				{
 					AthorUserName = "User2",
-					Id = 2,
+					Id = Guid.NewGuid(),
 					IsAvailable = true,
 					IsDelete = false,
 					ManufactureEmail="Users2@Mail.com",

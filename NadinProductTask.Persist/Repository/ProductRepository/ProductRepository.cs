@@ -52,6 +52,19 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 
 
 
+		public async Task DeleteAsync(Product deleteProduct)
+		{
+
+			deleteProduct.DeleteProduct();
+			_context.Update(deleteProduct);
+			await _context.SaveChangesAsync();
+		}
+
+
+
+
+
+
 		#region Validations
 
 		public async Task<bool> ManufactureEmailExistsAsync(string email)
@@ -63,8 +76,6 @@ namespace NadinProductTask.Persist.Repository.ProductRepository
 		{
 			return await _context.Products.AnyAsync(p => p.ProduceDate == dateTime);
 		}
-
 		#endregion
-
 	}
 }
