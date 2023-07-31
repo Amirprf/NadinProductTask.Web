@@ -99,13 +99,13 @@ namespace NadinProductTask.Web.Controllers
 		/// <summary>
 		/// حذف محصول
 		/// </summary>
-		[HttpDelete]
+		[HttpDelete, Authorize]
 		public async Task<IActionResult> DeleteProduct([FromBody] DeleteProductCommand command)
 		{
 			var error = command.ExecuteError();
 
-			//TODO : authorUserName => command
-			
+			var authorUsername = User.FindFirstValue(ClaimTypes.Name);
+			command.AthorUserName = authorUsername;
 
 			if (!command.Validate())
 			{
