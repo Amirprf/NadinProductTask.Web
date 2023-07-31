@@ -38,11 +38,10 @@ namespace NadinProductTask.Web.Controllers
 		/// <summary>
 		/// افزودن محصول
 		/// </summary>
-		[HttpPost]
+		[HttpPost, Authorize]
 		public async Task<IActionResult> AddProductAsync([FromBody] AddProductCommand command)
 		{
-			// TODO: Getting Users userName From Claims and fill our command
-
+			command.AthorUserName = User.Identity.Name;
 
 			var error = command.ExecuteError();
 
