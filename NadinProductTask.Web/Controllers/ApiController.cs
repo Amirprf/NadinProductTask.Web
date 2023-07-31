@@ -63,10 +63,21 @@ namespace NadinProductTask.Web.Controllers
 
 		#endregion
 
+		#region Identity
+
+		public const string OkRegisteredUser = "ثبت نام کاربر با موفقیت انجام شد";
+		public const string ExiststUser = "کاربری با این مشخصات در سامانه وجود دارد!";
+		public const string RegisterUserSomethingWhentWrong = "عملیات ثبت کاربر با مشکل مواجه شد! لطفا اطلاعات کاربر را بررسی کرده و مجدد اقدام کنید.";
+
+
+
+
+		public const string Success = "Success";
+		public const string Error = "Error";
+
+		#endregion
 
 		public const string YouDontHaveAccess = "شما دسترسی های لازم برای انجام این کار را ندارید";
-        public const string Success = "Success";
-		public const string Error = "Error";
 	}
 }
 
