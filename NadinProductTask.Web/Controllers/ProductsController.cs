@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NadinProductTask.Application.Commands.ProductCommands;
+using NadinProductTask.Application.Queries;
 using NadinProductTask.Application.Services.ProductServices;
 using NadinProductTask.Application.Validators.Product;
 using System.Security.Claims;
@@ -25,9 +26,9 @@ namespace NadinProductTask.Web.Controllers
 		/// لیست محصولات
 		/// </summary>
 		[HttpGet]
-		public async Task<IActionResult> GetAllProducts()
+		public async Task<IActionResult> GetAllProducts([FromQuery] GetAllProductQuery query)
 		{
-			var products = await _productService.GetAllProducts();
+			var products = await _productService.GetAllProducts(query);
 
 			if (!products.Any())
 				return NotFound();

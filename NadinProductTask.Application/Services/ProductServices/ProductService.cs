@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NadinProductTask.Application.Commands.ProductCommands;
 using NadinProductTask.Application.Dtos;
+using NadinProductTask.Application.Queries;
 using NadinProductTask.Domain.Entities;
 using NadinProductTask.Persist.Repository.ProductRepository;
 using System;
@@ -46,12 +47,14 @@ namespace NadinProductTask.Application.Services.ProductServices
 			}
 		}
 
-		public async Task<List<ProductDto>> GetAllProducts()
+		public async Task<List<ProductDto>> GetAllProducts(GetAllProductQuery query)
 		{
+			IQueryable<Product> result = _productRepository.GetAllAsync().Result.AsQueryable();
 
-			 var products= await _productRepository.GetAllAsync();
+			if (query.AuthorUserName != null)
+				result = result.Where(p => p.AthorUserName == query.AuthorUserName);
 
-			List<ProductDto> productsDto= _mapper.Map<List<ProductDto>>(products);
+			List<ProductDto> productsDto= _mapper.Map<List<ProductDto>>(result);
 
 			return productsDto;
 		}
