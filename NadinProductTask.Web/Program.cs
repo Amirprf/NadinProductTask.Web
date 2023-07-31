@@ -58,7 +58,7 @@ namespace NadinProductTask.Web
 
 			//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 			//	.AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-			
+
 			//Auto Mapper
 			builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
@@ -96,12 +96,19 @@ namespace NadinProductTask.Web
 						},new string[]{}
 					}
 				});
-			});;
+			}); ;
 
 
 			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
+			
+			using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
+			{
+				var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
+				context.Database.Migrate();
+			}
+
 			if (app.Environment.IsDevelopment())
 			{
 				app.UseSwagger();
