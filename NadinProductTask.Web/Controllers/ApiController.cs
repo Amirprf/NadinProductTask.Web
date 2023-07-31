@@ -59,6 +59,7 @@ namespace NadinProductTask.Web.Controllers
 
 		public const string EmailOrProduceDateExists = "ایمیل یا تاریخ معرفی تکراری میباشند";
 		public const string OKProductDeleted = "محصول با موفقیت حذف شد";
+		public const string OkGetProduct = " مشخصات محصول ";
 
 		#endregion
 

@@ -14,6 +14,7 @@ namespace NadinProductTask.Application.Services.ProductServices
 		Task AddProductAsync(AddProductCommand command);
 		Task UpdateProductById(EditProductCommand command);
 		Task<int> DeleteProduct(DeleteProductCommand command);
+		Task<ProductDto> GetProductById(Guid id);
 
 
 		Task<bool> IsUniqueEmail(string email);

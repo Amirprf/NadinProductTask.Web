@@ -102,6 +102,14 @@ namespace NadinProductTask.Application.Services.ProductServices
 			return 0;
 		}
 
+		public async Task<ProductDto> GetProductById(Guid id)
+		{
+			var product = await _productRepository.FindAsync(id);
+
+			return _mapper.Map<ProductDto>(product);
+		}
+
+
 
 
 

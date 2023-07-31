@@ -96,6 +96,9 @@ namespace NadinProductTask.Web.Controllers
 			return OkResult(ApiMessage.Success);
 		}
 
+		/// <summary>
+		/// حذف محصول
+		/// </summary>
 		[HttpDelete]
 		public async Task<IActionResult> DeleteProduct([FromBody] DeleteProductCommand command)
 		{
@@ -119,6 +122,20 @@ namespace NadinProductTask.Web.Controllers
 				return NotFound();
 			}
 			return OkResult(ApiMessage.OKProductDeleted);
+		}
+
+		/// <summary>
+		/// نمایش محصول به وسیله آیدی
+		/// </summary>
+		/// /// <param name="id">آیدی محصول</param>
+		/// <returns>محصول</returns>
+		[HttpGet("{id}")]
+		public async Task<IActionResult> GetProductForEdit(Guid id)
+		{
+
+			var product = await _productService.GetProductById(id);
+
+			return OkResult(ApiMessage.OkGetProduct, product);
 		}
 	}
 }
